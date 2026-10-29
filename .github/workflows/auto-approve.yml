@@ -5,6 +5,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
+      content: read
       pull-requests: write
     steps:
-      - uses: hmarr/auto-approve-action@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          predicate-quantifier: every
+          filters: |
+            outside:
+              - '!examples/**'
+              - '!data/**'
+      - if: steps.filter.outputs.outside == 'false'
+        uses: hmarr/auto-approve-action@v4
