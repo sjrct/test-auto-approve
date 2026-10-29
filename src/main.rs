@@ -1,4 +1,4 @@
 fn main() -> std::io::Result<()> {
-    println!("Hello, world");
+    println!("hello, world");
     Result(())
 }
